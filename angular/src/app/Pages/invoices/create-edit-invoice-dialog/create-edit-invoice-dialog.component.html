@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Invoice' : 'Create Invoice' }}</h2>
+<mat-dialog-content>
+    <form>
+        <div class="form-group">
+            <label>{{ 'Customer' | localize }}</label>
+            <select [(ngModel)]="invoice.customerID" name="customerID" class="form-control">
+                <option *ngFor="let customer of customers" [value]="customer.id">
+                    {{ customer.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>{{ 'Total Amount' | localize }}</label>
+            <input type="number" [(ngModel)]="invoice.totalAmount" name="totalAmount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>{{ 'Status' | localize }}</label>
+            <select [(ngModel)]="invoice.status" name="status" class="form-control">
+                <option value="Pending">{{ 'Pending' | localize }}</option>
+                <option value="Paid">{{ 'Paid' | localize }}</option>
+            </select>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="save()">{{ 'Save' | localize }}</button>
+    <button mat-button mat-dialog-close>{{ 'Cancel' | localize }}</button>
+</mat-dialog-actions>
+

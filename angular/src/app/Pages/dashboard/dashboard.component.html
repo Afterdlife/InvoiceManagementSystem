@@ -1,0 +1,107 @@
+
+<div>
+    <section class="content-header">
+        <h1>{{ "Dashboard" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ totalCustomers }}</h3>
+                        <p>{{ "Total Customers" | localize }}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ totalInvoices }}</h3>
+                        <p>{{ "Total Invoices" | localize }}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-file-invoice"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <p-chart type="bar" [data]="salesChartData"></p-chart>
+            </div>
+            <div class="col-lg-6">
+                <p-chart type="pie" [data]="invoiceStatusData"></p-chart>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="col-lg-3 col-6">
+    <div class="small-box bg-warning">
+        <div class="inner">
+            <h3>{{ totalPendingPayments }}</h3>
+            <p>{{ "Pending Payments" | localize }}</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-exclamation-triangle"></i>
+        </div>
+    </div>
+</div>
+
+<div>
+    <section class="content-header">
+        <h1>{{ "Top Customers" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
+                <p-chart type="bar" [data]="chartData"></p-chart>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<div>
+    <section class="content-header">
+        <h1>{{ "Overdue Invoices" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
+                <p-table [value]="overdueInvoices" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Invoice ID" | localize }}</th>
+                            <th>{{ "Customer Name" | localize }}</th>
+                            <th>{{ "Due Date" | localize }}</th>
+                            <th>{{ "Amount Due" | localize }}</th>
+                            <th>{{ "Actions" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invoice>
+                        <tr>
+                            <td>{{ invoice.id }}</td>
+                            <td>{{ invoice.customerName }}</td>
+                            <td>{{ invoice.dueDate | date }}</td>
+                            <td>{{ invoice.amountDue | currency }}</td>
+                            <td>
+                                <button class="btn bg-danger" (click)="sendReminder(invoice)">
+                                    {{ "Send Reminder" | localize }}
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>

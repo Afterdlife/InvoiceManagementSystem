@@ -1,0 +1,36 @@
+<div>
+    <section class="content-header">
+        <h1>{{ "Sales by Customer" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <input type="text" class="form-control" [(ngModel)]="filterText"
+                    placeholder="{{ 'Search by Customer' | localize }}" />
+                <button class="btn bg-blue" (click)="getSales()">
+                    <i class="fa fa-search"></i> {{ "Search" | localize }}
+                </button>
+            </div>
+
+            <div class="card-body">
+                <p-table [value]="salesRecords" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Customer Name" | localize }}</th>
+                            <th>{{ "Sales Date" | localize }}</th>
+                            <th>{{ "Total Sales" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-record>
+                        <tr>
+                            <td>{{ record.customerName }}</td>
+                            <td>{{ record.salesDate | date }}</td>
+                            <td>{{ record.totalSales | currency }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,78 @@
+<div>
+    <p-table [value]="customers" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+            <tr>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>
+                    <button pButton type="button" icon="pi pi-pencil" (click)="showEditDialog(customer)"></button>
+                    <button pButton type="button" icon="pi pi-trash" (click)="deleteCustomer(customer)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <button pButton label="Add Customer" icon="pi pi-plus" (click)="showCreateDialog()"></button>
+</div>
+
+
+<div>
+    <section class="content-header">
+        <h1>{{ "Customers" | localize }}</h1>
+        <button class="btn bg-blue" (click)="openCreateDialog()">
+            <i class="fa fa-plus"></i> {{ "Create Customer" | localize }}
+        </button>
+    </section>
+
+    <section class="content">
+        <div class="card table-wrapper">
+            <div class="card-header">
+                <input type="text" class="form-control" [(ngModel)]="filterText"
+                    placeholder="{{ 'Search' | localize }}" />
+                <button class="btn bg-blue" (click)="getCustomers()">
+                    <i class="fa fa-search"></i> {{ "Search" | localize }}
+                </button>
+            </div>
+            <div class="card-body">
+                <p-table [value]="customers" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Customer ID" | localize }}</th>
+                            <th>{{ "Name" | localize }}</th>
+                            <th>{{ "Email" | localize }}</th>
+                            <th>{{ "Phone" | localize }}</th>
+                            <th>{{ "Actions" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-customer>
+                        <tr>
+                            <td>{{ customer.customerID }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td>
+                                <button class="btn btn-sm bg-secondary" (click)="openEditDialog(customer)">
+                                    <i class="fa fa-edit"></i> {{ "Edit" | localize }}
+                                </button>
+                                <button class="btn btn-sm bg-danger" (click)="deleteCustomer(customer)">
+                                    <i class="fa fa-trash"></i> {{ "Delete" | localize }}
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>
+

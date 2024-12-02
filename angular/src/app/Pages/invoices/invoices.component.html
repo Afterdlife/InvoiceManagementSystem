@@ -1,0 +1,50 @@
+<div>
+    <section class="content-header">
+        <h1>{{ "Invoices" | localize }}</h1>
+        <button class="btn bg-blue" (click)="openCreateDialog()">
+            <i class="fa fa-plus"></i> {{ "Create Invoice" | localize }}
+        </button>
+    </section>
+
+    <section class="content">
+        <div class="card table-wrapper">
+            <div class="card-header">
+                <input type="text" class="form-control" [(ngModel)]="filterText"
+                    placeholder="{{ 'Search' | localize }}" />
+                <button class="btn bg-blue" (click)="getInvoices()">
+                    <i class="fa fa-search"></i> {{ "Search" | localize }}
+                </button>
+            </div>
+            <div class="card-body">
+                <p-table [value]="invoices" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Invoice ID" | localize }}</th>
+                            <th>{{ "Customer Name" | localize }}</th>
+                            <th>{{ "Total Amount" | localize }}</th>
+                            <th>{{ "Status" | localize }}</th>
+                            <th>{{ "Actions" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invoice>
+                        <tr>
+                            <td>{{ invoice.invoiceID }}</td>
+                            <td>{{ invoice.customerName }}</td>
+                            <td>{{ invoice.totalAmount | currency }}</td>
+                            <td>{{ invoice.status }}</td>
+                            <td>
+                                <button class="btn btn-sm bg-secondary" (click)="openEditDialog(invoice)">
+                                    <i class="fa fa-edit"></i> {{ "Edit" | localize }}
+                                </button>
+                                <button class="btn btn-sm bg-danger" (click)="deleteInvoice(invoice)">
+                                    <i class="fa fa-trash"></i> {{ "Delete" | localize }}
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>
+

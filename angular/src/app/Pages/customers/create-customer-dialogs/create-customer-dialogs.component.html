@@ -1,0 +1,26 @@
+<p-dialog [(visible)]="visible" [closable]="false" [modal]="true">
+    <form [formGroup]="form" (ngSubmit)="createCustomer()">
+        <div class="p-fluid">
+            <div class="field">
+                <label for="name">Name</label>
+                <input id="name" type="text" pInputText formControlName="name" />
+            </div>
+            <div class="field">
+                <label for="address">Address</label>
+                <input id="address" type="text" pInputText formControlName="address" />
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" pInputText formControlName="email" />
+            </div>
+            <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" type="text" pInputText formControlName="phone" />
+            </div>
+        </div>
+        <p-footer>
+            <button pButton label="Create" type="submit"></button>
+            <button pButton label="Cancel" class="p-button-secondary" (click)="closeDialog()"></button>
+        </p-footer>
+    </form>
+</p-dialog>

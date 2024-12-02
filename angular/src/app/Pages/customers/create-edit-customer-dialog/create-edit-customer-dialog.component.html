@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Customer' : 'Create Customer' }}</h2>
+<mat-dialog-content>
+    <form>
+        <div class="form-group">
+            <label>{{ 'Name' | localize }}</label>
+            <input type="text" [(ngModel)]="customer.name" name="name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>{{ 'Email' | localize }}</label>
+            <input type="email" [(ngModel)]="customer.email" name="email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>{{ 'Phone' | localize }}</label>
+            <input type="text" [(ngModel)]="customer.phone" name="phone" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>{{ 'Address' | localize }}</label>
+            <textarea [(ngModel)]="customer.address" name="address" class="form-control"></textarea>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="save()">{{ 'Save' | localize }}</button>
+    <button mat-button mat-dialog-close>{{ 'Cancel' | localize }}</button>
+</mat-dialog-actions>
+

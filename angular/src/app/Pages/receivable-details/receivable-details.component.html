@@ -1,0 +1,39 @@
+<div>
+    <section class="content-header">
+        <h1>{{ "Receivable Details" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <input type="text" class="form-control" [(ngModel)]="filterText"
+                    placeholder="{{ 'Search by Customer or Invoice' | localize }}" />
+                <button class="btn bg-blue" (click)="getReceivables()">
+                    <i class="fa fa-search"></i> {{ "Search" | localize }}
+                </button>
+            </div>
+
+            <div class="card-body">
+                <p-table [value]="receivables" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Customer Name" | localize }}</th>
+                            <th>{{ "Invoice ID" | localize }}</th>
+                            <th>{{ "Amount Due" | localize }}</th>
+                            <th>{{ "Due Date" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-receivable>
+                        <tr>
+                            <td>{{ receivable.customerName }}</td>
+                            <td>{{ receivable.invoiceId }}</td>
+                            <td>{{ receivable.amountDue | currency }}</td>
+                            <td>{{ receivable.dueDate | date }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>
+

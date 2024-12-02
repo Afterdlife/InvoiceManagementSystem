@@ -16,11 +16,6 @@ import { AppComponent } from './app.component';
                         canActivate: [AppRouteGuard]
                     },
                     {
-                        path: 'about',
-                        loadChildren: () => import('./about/about.module').then((m) => m.AboutModule),
-                        canActivate: [AppRouteGuard]
-                    },
-                    {
                         path: 'users',
                         loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
                         data: { permission: 'Pages.Users' },
@@ -43,6 +38,7 @@ import { AppComponent } from './app.component';
                         loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
                         canActivate: [AppRouteGuard]
                     },
+                    
                 ]
             }
         ])

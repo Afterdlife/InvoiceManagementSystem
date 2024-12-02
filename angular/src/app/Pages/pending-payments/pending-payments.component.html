@@ -1,0 +1,46 @@
+<div>
+    <section class="content-header">
+        <h1>{{ "Pending Payments" | localize }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <input type="text" class="form-control" [(ngModel)]="filterText"
+                    placeholder="{{ 'Search by Customer' | localize }}" />
+                <input type="date" class="form-control" [(ngModel)]="filterDate"
+                    placeholder="{{ 'Filter by Due Date' | localize }}" />
+                <button class="btn bg-blue" (click)="getPendingPayments()">
+                    <i class="fa fa-search"></i> {{ "Search" | localize }}
+                </button>
+            </div>
+
+            <div class="card-body">
+                <p-table [value]="pendingPayments" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>{{ "Customer Name" | localize }}</th>
+                            <th>{{ "Invoice ID" | localize }}</th>
+                            <th>{{ "Amount Due" | localize }}</th>
+                            <th>{{ "Due Date" | localize }}</th>
+                            <th>{{ "Actions" | localize }}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-payment>
+                        <tr>
+                            <td>{{ payment.customerName }}</td>
+                            <td>{{ payment.invoiceId }}</td>
+                            <td>{{ payment.amountDue | currency }}</td>
+                            <td>{{ payment.dueDate | date }}</td>
+                            <td>
+                                <button class="btn bg-blue" (click)="markAsPaid(payment)">
+                                    {{ "Mark as Paid" | localize }}
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>
